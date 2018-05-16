@@ -3,10 +3,11 @@ import argparse
 import sys
 from robobrowser import RoboBrowser
 parser = argparse.ArgumentParser()
-parser.add_argument("t", help="topic number",
-type=int)
+parser.add_argument("t", help="topic number", type=int)
+parser.add_argument("u", help="filename without .csv extension", type=str)
 args = parser.parse_args()
 theme_id = args.t
+filename = args.u
 
 fconf = open('config.txt', 'r')
 tconf = fconf.read()
@@ -15,7 +16,8 @@ conf_list = tconf.split('\n')
 login = conf_list[0]
 password = conf_list[1]
 
-ftab = open('upload.csv', 'r')
+filename = filename + '.csv'
+ftab = open(filename, 'r')
 tables = ftab.read()
 ftab.close()
 tables_lines = tables.split('fFx')
