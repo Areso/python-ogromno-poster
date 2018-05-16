@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+#This project licensed under GNU GPLv3, 
+#author:  Gladyshev Anton 
+#contact: Returnstrike [at] ya.ru
 import argparse
 import sys
 from robobrowser import RoboBrowser
