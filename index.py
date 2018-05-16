@@ -2,6 +2,8 @@
 import argparse
 import sys
 from robobrowser import RoboBrowser
+from time import sleep
+
 parser = argparse.ArgumentParser()
 parser.add_argument("t", help="topic number", type=int)
 parser.add_argument("u", help="filename without .csv extension", type=str)
@@ -47,14 +49,17 @@ for x in range(0, line_count):
 login_url = 'https://ogromno.com/index.php?showuser=1'
 theme_url = 'https://ogromno.com/index.php?act=zakup&CODE=00&tid='+str(theme_id)
 
-browser = RoboBrowser(history=True)
+browser = RoboBrowser(history=True,parser='html.parser',user_agent='Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36')
 browser.open(login_url)
 form = browser.get_form(action='https://ogromno.com/index.php')
 form['UserName'].value = login
 form['PassWord'].value = password
+#browser.session.cookies['_gh_sess']
+#browser.session.headers['User-Agent']
 browser.submit_form(form)
 
 for x in range(0, line_count):
+    sleep(0.1)#Time in seconds.
     browser.open(theme_url)
     form = browser.get_form(action='/index.php')
     #form = browser.get_form(id='prodpost')
